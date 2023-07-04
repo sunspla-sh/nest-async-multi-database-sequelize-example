@@ -171,10 +171,10 @@ describe('CatsService', () => {
     it('should be a method', () => {
       expect(catsService.remove).toEqual(expect.any(Function));
     });
-    it('should invoke the findOne method of an instance of Cats service with a number argument', async () => {
+    it('should invoke the findOne method of an instance of Cats service with a number argument', () => {
       const fakeId = 1;
       const findOneSpy = jest.spyOn(catsService, 'findOne');
-      await catsService.remove(fakeId);
+      catsService.remove(fakeId);
       expect(findOneSpy).toHaveBeenCalledWith(fakeId);
     });
     it('should invoke destroy method of an instance of Cat if cat exists', async () => {
