@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
+import { InjectConnection, InjectModel } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { instanceToPlain } from 'class-transformer';
 import { CATS_CONNECTION } from '../constants';
@@ -11,7 +11,7 @@ import { CreateCatArrayDto } from './create-cat-array.dto';
 export class CatsService {
   constructor(
     @InjectModel(Cat, CATS_CONNECTION) private catModel: typeof Cat,
-    private sequelize: Sequelize,
+    @InjectConnection(CATS_CONNECTION) private sequelize: Sequelize,
   ) {}
 
   findAll(): Promise<Cat[]> {

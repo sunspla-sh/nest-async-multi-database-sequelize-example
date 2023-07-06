@@ -5,6 +5,8 @@ import { USERS_CONNECTION, CATS_CONNECTION } from './constants';
 import { EnvVariables, validateEnvVariables } from './env.validate';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CatsModule } from './cats/cats.module';
+import { Cat } from './cats/cat.model';
 
 @Module({
   imports: [
@@ -39,6 +41,7 @@ import { AppService } from './app.service';
       }),
       inject: [ConfigService],
     }),
+    CatsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
