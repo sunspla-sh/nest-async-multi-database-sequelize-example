@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { CreateUserDto } from './create-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -6,15 +7,15 @@ export class UsersService {
     return;
   }
 
-  findOne() {
+  findOne(id: number) {
     return;
   }
 
-  create() {
+  create(createUserDto: CreateUserDto) {
     return;
   }
 
-  remove() {
+  async remove(id: number) {
     return;
   }
 }
