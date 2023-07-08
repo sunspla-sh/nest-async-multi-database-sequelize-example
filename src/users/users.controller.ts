@@ -1,20 +1,37 @@
-import { Controller } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Delete,
+  Body,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { UsersService } from './users.service';
+import { User } from './user.model';
+import { CreateUserDto } from './create-user.dto';
 
 @Controller('users')
 export class UsersController {
-  findAll() {
-    return;
+  constructor(private usersService: UsersService) {}
+
+  @Get()
+  findAll(): Promise<User[]> {
+    return this.usersService.findAll();
   }
 
-  findOne() {
-    return;
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number): Promise<User> {
+    return this.usersService.findOne(id);
   }
 
-  create() {
-    return;
+  @Post()
+  create(@Body() createUserDto: CreateUserDto): Promise<User> {
+    return this.usersService.create(createUserDto);
   }
 
-  remove() {
-    return;
+  @Delete(':id')
+  remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    return this.usersService.remove(id);
   }
 }
