@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { getModelToken } from '@nestjs/sequelize';
+import { getModelToken, getConnectionToken } from '@nestjs/sequelize';
 import { createMock, DeepMocked } from '@golevelup/ts-jest';
 import { Sequelize } from 'sequelize-typescript';
 import { FindOptions, Transaction } from 'sequelize';
@@ -24,7 +24,7 @@ describe('CatsService', () => {
           useValue: createMock<typeof Cat>(),
         },
         {
-          provide: Sequelize,
+          provide: getConnectionToken(CATS_CONNECTION),
           useValue: createMock<Sequelize>(),
         },
       ],
@@ -34,7 +34,7 @@ describe('CatsService', () => {
     catModel = moduleRef.get<typeof Cat, DeepMocked<typeof Cat>>(
       getModelToken(Cat, CATS_CONNECTION),
     );
-    sequelize = moduleRef.get<Sequelize>(Sequelize);
+    sequelize = moduleRef.get<Sequelize>(getConnectionToken(CATS_CONNECTION));
   });
 
   afterEach(() => {

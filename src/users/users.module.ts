@@ -7,4 +7,4 @@ import { Cat } from '../cats/cat.model';
 @Module({
   imports: [SequelizeModule.forFeature([User, Cat], USERS_CONNECTION)],
 })
-export class UserModule {}
+export class UsersModule {}
