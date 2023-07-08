@@ -47,7 +47,7 @@ describe('UsersService', () => {
     });
     it('should invoke findAll method of userModel', () => {
       usersService.findAll();
-      expect(userModel.findAll()).toHaveBeenCalled();
+      expect(userModel.findAll).toHaveBeenCalled();
     });
     it('should return the result of invoking the findAll method of user model', () => {
       expect(userModel.findAll).toHaveReturnedWith(usersService.findAll());
